@@ -21,6 +21,7 @@ class LibroAdapter(
         return LibroViewHolder(binding)
     }
 
+
     override fun onBindViewHolder(holder: LibroViewHolder, position: Int) {
         val libro = libros[position]
 
@@ -45,6 +46,8 @@ class LibroAdapter(
 
         holder.binding.btnFavorito.text = if (libro.favorito)
             "Quitar favorito" else "Favorito"
+        holder.binding.ivFavoritoIcono.visibility =
+            if (libro.favorito) android.view.View.VISIBLE else android.view.View.GONE
 
         holder.binding.btnEliminar.setOnClickListener {
             onEliminarClick(libro)
@@ -53,6 +56,7 @@ class LibroAdapter(
         holder.binding.btnFavorito.setOnClickListener {
             onFavoritoClick(libro)
         }
+        holder.binding.tvwTituloLibro.text = libro.titulo
     }
 
     override fun getItemCount(): Int {
